@@ -1,12 +1,4 @@
 
-					</div>
-					<!-- row -->
-				</div>
-				<!-- container -->
-			</div>
-			<!-- /MAIN HEADER -->
-		</header>
-		<!-- /HEADER -->
 
 		<!-- NAVIGATION -->
 		<nav id="navigation">

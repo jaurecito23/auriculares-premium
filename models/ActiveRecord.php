@@ -191,6 +191,18 @@ public static function obtenerProductos(){
 
        
 
+ $query = "SELECT * FROM ".static::$tabla." LIMIT 6;";  
+
+    $resultado = self::consultarSQL($query);
+
+    return $resultado;
+
+}
+public static function obtenerTodosProductos(){
+
+
+       
+
  $query = "SELECT * FROM ".static::$tabla.";";  
 
     $resultado = self::consultarSQL($query);

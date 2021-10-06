@@ -18,5 +18,6 @@ $router = new Router();
 //AdministradorZONA PRIVADA
 
 $router->get("/",[PaginasController::class,"home"]);
+$router->get("/producto",[PaginasController::class,"producto"]);
 
 $router->comprobarRutas();

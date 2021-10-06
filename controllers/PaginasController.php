@@ -32,6 +32,24 @@ class PaginasController{
             ]);
 
         }
+        public static function producto(Router $router){
+
+            $productos = Producto::obtenerProductos();
+
+            $id = \buscarQueryString("id");
+
+            
+            $producto = Producto::find($id);
+            
+
+            $router->render('paginas/producto',[
+
+                "productos"=>$productos,
+                "producto"=>$producto,
+                "id"=>$id
+            ]);
+
+        }
 
 
     }
