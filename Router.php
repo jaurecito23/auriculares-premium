@@ -61,7 +61,7 @@ class Router
         //Arreglo de rutas protegidas...
 
         $rutas_protegidas = ['/admin','/admin/crear','admin/actualizar'];
-        session_start();
+
         $auth = $_SESSION["login"] ?? NULL;
 
         //Proteger las rutas

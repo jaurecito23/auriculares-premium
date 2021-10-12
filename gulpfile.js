@@ -26,7 +26,7 @@ function css() {
         .pipe(postcss([autoprefixer(), cssnano()]))
         // .pipe(postcss([autoprefixer()]))
         .pipe(sourcemaps.write('.'))
-        .pipe( dest('./auriculares-premium/build/css') );
+        .pipe( dest('./ventas-jaure/build/css') );
 }
 
 
@@ -37,20 +37,20 @@ function javascript() {
       .pipe(terser())
       .pipe(sourcemaps.write('.'))
       .pipe(rename({ suffix: '.min' }))
-      .pipe(dest('./auriculares-premium/build/js'))
+      .pipe(dest('./ventas-jaure/build/js'))
 }
 
 function imagenes() {
     return src(paths.imagenes)
         .pipe(cache(imagemin({ optimizationLevel: 3})))
-        .pipe(dest('./auriculares-premium/build/img'))
+        .pipe(dest('./ventas-jaure/build/img'))
         .pipe(notify({ message: 'Imagen Completada'}));
 }
 
 function versionWebp() {
     return src(paths.imagenes)
         .pipe( webp() )
-        .pipe(dest('./auriculares-premium/build/img'))
+        .pipe(dest('./ventas-jaure/build/img'))
         .pipe(notify({ message: 'Imagen Completada'}));
 }
 

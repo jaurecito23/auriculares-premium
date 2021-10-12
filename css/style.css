@@ -461,9 +461,30 @@ textarea.input {
 	Search
 \*----------------------------*/
 
+@media (min-width: 965px){
+
+  .contenedor-logo{
+
+    display: flex;
+    align-items: center;
+
+  }
+
+}
+
+.contenedor-logo img{
+
+  width: 100%;
+
+}
+
+
+
 .header-search {
   padding: 15px 0px;
 }
+
+
 
 .header-search form {
   position: relative;
@@ -489,6 +510,39 @@ textarea.input {
   border-radius: 0px 40px 40px 0px;
 }
 
+
+@media (max-width: 395px){
+
+  .header-search {
+    padding: 5px 0px;
+  }
+
+  .header-search .input-select{
+
+    width: 20%;
+    overflow-x: hidden;
+    margin-right: 0px;
+
+  }
+
+  .header-search form .input {
+    width: 60%;
+    margin-right: -4px;
+  }
+
+  .header-search form .search-btn {
+
+    width: 20%;
+    overflow-x: hidden;
+    padding-right: 3px;
+
+  }
+
+
+
+
+
+}
 /*----------------------------*\
 	Cart
 \*----------------------------*/
@@ -535,6 +589,47 @@ textarea.input {
   font-size: 10px;
   color: #FFF;
   background-color: #11B009;
+}
+
+@media (max-width: 395px){
+
+  .header-ctn{
+    display: flex;
+    margin: auto;
+    float: none;
+
+
+  }
+
+  .header-ctn>div{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  .header-ctn>div>a>i{
+
+    font-size: 14px;
+    width:  25%;
+
+  }
+
+  .header-ctn>div>a>span {
+
+    font-size: 9px;
+    width:  25%;
+  }
+
+  .header-ctn>div>a>.qty{
+
+    font-size: 7px;
+    width: 25%;
+  }
+
+
 }
 
 .header-ctn .menu-toggle {
@@ -791,8 +886,9 @@ textarea.input {
   margin: 30px 0px;
   background-color: #E4E7ED;
   background-image: url('../img/hotdeal.png');
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .hot-deal {
@@ -2188,4 +2284,38 @@ textarea.input {
     float: none;
     margin-top: 10px;
   }
+}
+
+
+
+
+/*=========================================================
+	13 -> Animacion a btn
+===========================================================*/
+
+
+.animar-button{
+
+  animation-name: animar-boton;
+  animation-duration: 1.3s;
+
+}
+
+
+@keyframes animar-boton{
+
+  0%{transform: rotate(3deg)}
+  10%{transform: rotate(-3deg)}
+  20%{transform: rotate(3deg)}
+  30%{transform: rotate(-3deg)}
+  40%{transform: rotate(-3deg)}
+  50%{transform: rotate(0deg)}
+  60%{transform: translateX(20px)}
+  70%{transform: translateX(-40px)}
+  85%{transform: rotate(3deg)}
+  90%{transform: rotate(-3deg)}
+  95%{transform: rotate(3deg)}
+  100%{transform: rotate(0deg)}
+
+
 }

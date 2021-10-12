@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>Auriculares Premium</title>
+		<title>Jaure Ventas</title>
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -26,6 +26,7 @@
 
 		<!-- Custom stlylesheet -->
 		<link type="text/css" rel="stylesheet" href="../css/style.css"/>
+		<link type="text/css" rel="stylesheet" href="build/css/app.css"/>
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -42,13 +43,19 @@
 			<div id="top-header">
 				<div class="container">
 					<ul class="header-links pull-left">
-						<li><a href="#"><i class="fa fa-phone"></i> +598 92 971 074</a></li>
-						<li><a href="#"><i class="fa fa-envelope-o"></i> auriculares.premium@gmail.com</a></li>
+						<li><a href="#"><i class="fa fa-phone"></i> +598 93 693 110</a></li>
+						<li><a href="#"><i class="fa fa-envelope-o"></i> jaureventas1@gmail.com</a></li>
 						<li><a href="#"><i class="fa fa-map-marker"></i> Canelones - Uruguay </a></li>
 					</ul>
 					<ul class="header-links pull-right">
-						<li><a href="#"><i class="fa fa-dollar"></i> UY </a></li>
-						<li><a href="#"><i class="fa fa-user-o"></i> FJ DESARROLLO WEB </a></li>
+						<li><a href="#"><i class="fa fa-dollar"></i> UY ></a></li>
+
+						<?php if($usuario && $usuario->nombres !== ""):?>
+							<li><a class="usuario"><i class="fa fa-user-o"></i><?php echo $usuario->nombres; ?></a></li>
+								
+						<?php else:?>	
+						<li><a class="crear-ingresar"><i class="fa fa-user-o"></i>Crear cuenta/Iniciar Sesion</a></li>
+						<?php endif;?>	
 					</ul>
 				</div>
 			</div>
@@ -59,11 +66,11 @@
 				<!-- container -->
 				<div class="container">
 					<!-- row -->
-					<div class="row">
+					<div class="row contenedor-logo">
 						<!-- LOGO -->
 						<div class="col-md-3">
-							<div class="header-logo">
-								<a href="#" class="logo">
+							<div class="header-logo" style="">
+								<a href="/accesorios/ventas-jaure" class="logo">
 									<img src="../img/logo.png" alt="">
 								</a>
 							</div>
@@ -75,9 +82,10 @@
 							<div class="header-search">
 								<form>
 									<select class="input-select">
-										<option value="0">Auriculares</option>
-										<option value="1">Gorsun</option>
-										<option value="1">Remax</option>
+										<?php  foreach ($categorias as $categoria):?>
+										<option value="<?php echo $categoria["id"];?>"><?php echo substr($categoria["nombre"],0,7); echo "..."?></option>
+
+										<?php endforeach; ?>
 									</select>
 									<input class="input" placeholder="Buscar Aquí">
 									<button class="search-btn">Buscar</button>
@@ -108,7 +116,7 @@
 									</a>
 									<div class="cart-dropdown">
 										<div class="cart-list">
-											
+
 										</div>
 										<div class="cart-summary">
 											<small><span>3</span> Productos(s) seleccionados</small>
@@ -116,7 +124,7 @@
 										</div>
 										<div class="cart-btns">
 											<a href="#">Ver Carrito</a>
-											<a href="#">Terminar <i class="fa fa-arrow-circle-right"></i></a>
+											<a href="/accesorios/ventas-jaure/pagar">Terminar <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -134,7 +142,7 @@
 						</div>
 						<!-- /ACCOUNT -->
 
-						
+
 					</div>
 					<!-- row -->
 				</div>
@@ -143,3 +151,27 @@
 			<!-- /MAIN HEADER -->
 		</header>
 		<!-- /HEADER -->
+
+			<!-- NAVIGATION -->
+			<nav id="navigation">
+			<!-- container -->
+			<div class="container">
+				<!-- responsive-nav -->
+				<div id="responsive-nav">
+					<!-- NAV -->
+					<ul class="main-nav nav navbar-nav">
+						<li class="<?php if($pagina === "home"){ echo "active"; } ?>"><a href="/accesorios/ventas-jaure">Home</a></li>
+
+						<!-- Se trae todas las categorias de la base de datos -->
+						<?php foreach ($categorias as  $cat):?>
+
+							<li class="<?php if($cat["nombre"] == $categoria_actual["nombre"] && $pagina !== "home" ){ echo "active";} ?>"><a href="tienda?categoria=<?php echo $cat['id']; ?>" ><?php echo $cat["nombre"]; ?></a></li>
+					<?php endforeach; ?>
+					</ul>
+					<!-- /NAV -->
+				</div>
+				<!-- /responsive-nav -->
+			</div>
+			<!-- /container -->
+		</nav>
+		<!-- /NAVIGATION -->

@@ -28,7 +28,7 @@ class Producto extends ActiveRecord{
         $this->precio_anterior = $args["precio_anterior"] ?? "";
         $this->descripcion = $args["descripcion"] ?? "";
         $this->imagenes = $args["imagenes"] ?? [];
-    
+
     }
 
 
@@ -99,9 +99,9 @@ public function validar(){
         self::$errores[] = "Debes ingresar un precio anterior";
 
     }
-  
 
-    
+
+
     return self::$errores;
 
 
@@ -154,7 +154,7 @@ public static function obtenerProductosCalidad(){
     $id_productos = self::$db->query($query);
 
     $resultado = [];
-    foreach($id_productos as  $id_producto){ 
+    foreach($id_productos as  $id_producto){
         $id = $id_producto["id_producto"];
         $query = "SELECT * FROM productos WHERE id = $id";
         $resultado[] = self::consultarSQL($query);
@@ -171,11 +171,11 @@ public static function obtenerProductosCalidad(){
         $id = $this->id;
         $query = "SELECT * FROM imagenes_producto WHERE id_producto = $id;";
         $resultado = self::$db->query($query);
-       
 
-    
 
-	  
+
+
+
         while($img = $resultado->fetch_assoc()){
 
             $imagenes[] = $img["urls"];
@@ -183,6 +183,24 @@ public static function obtenerProductosCalidad(){
         };
 
         return $imagenes;
+
+
+    }
+
+    public static function obtenerCategorias(){
+
+        $query = "SELECT * FROM categorias";
+        $resultado = self::$db->query($query);
+
+
+        $categorias = [];
+
+        while($categoria = $resultado->fetch_assoc()){
+
+            $categorias[] = $categoria;
+
+        }
+     return $categorias;
 
 
     }

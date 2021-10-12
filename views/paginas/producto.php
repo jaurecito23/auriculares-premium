@@ -1,23 +1,4 @@
-	<!-- NAVIGATION -->
-    <nav id="navigation">
-			<!-- container -->
-			<div class="container">
-				<!-- responsive-nav -->
-				<div id="responsive-nav">
-					<!-- NAV -->
-					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">Categorias</a></li>
-						<li><a href="#">Laptops</a></li>
-						<li><a href="#">Auriculares Premium</a></li>
-					</ul>
-					<!-- /NAV -->
-				</div>
-				<!-- /responsive-nav -->
-			</div>
-			<!-- /container -->
-		</nav>
-		<!-- /NAVIGATION -->
+
 
 		<!-- BREADCRUMB -->
 		<div id="breadcrumb" class="section">
@@ -27,9 +8,9 @@
 				<div class="row">
 					<div class="col-md-12">
 						<ul class="breadcrumb-tree">
-							<li><a href="#">Home</a></li>
-							<li><a href="#">Categorias</a></li>
-							<li><a href="#">Auriculares  Premium</a></li>				
+							<li><a href="/accesorios/ventas-jaure/">Home</a></li>
+							<li><a href="/accesorios/ventas-jaure/">Categorias</a></li>
+							<li><a href="/accesorios/ventas-jaure/tienda?categoria=<?php echo $categoria_actual["id"]?>"><?php echo $categoria_actual["nombre"]; ?></a></li>
 						</ul>
 					</div>
 				</div>
@@ -56,13 +37,13 @@
                             <div class="product-preview">
 								<img src="../imagenes_productos/<?php echo $imagen;?>" alt="">
 							</div>
-                            
+
                             <?php } ?>
-                            
+
 						</div>
 					</div>
 					<!-- /Product main img -->
-                    
+
 					<!-- Product thumb imgs -->
 					<div class="col-md-2  col-md-pull-5">
 						<div id="product-imgs">
@@ -74,7 +55,7 @@
                                 </div>
 
                             <?php }?>
-							
+
 						</div>
 					</div>
 					<!-- /Product thumb imgs -->
@@ -107,7 +88,7 @@
 										<option value="0"></option>
 									</select> -->
 								<!-- </label> -->
-							<!-- </div> --> 
+							<!-- </div> -->
 
 							<div class="add-to-cart">
 								<!-- <div class="qty-label">
@@ -126,7 +107,7 @@
 
 							<ul class="product-links">
 								<li>Categoria:</li>
-								<li><a href="#">Auriculares Premium</a></li>
+								<li><a href="/accesorios/ventas-jaure/tienda?id=<?php  echo $categoria_actual["id"]; ?>"><?php echo $categoria_actual["nombre"];?></a></li>
 							</ul>
 
 							<ul class="product-links">
@@ -136,7 +117,7 @@
 								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
 								<li><a href="#"><i class="fa fa-envelope"></i></a></li>
 							</ul>
-  
+
 						</div>
 					</div>
 					<!-- /Product details -->
@@ -223,7 +204,7 @@
 															<i class="fa fa-star"></i>
 															<i class="fa fa-star"></i>
 															<i class="fa fa-star-o"></i>
-														
+
 														</div>
 														<div class="rating-progress">
 															<div></div>
@@ -379,33 +360,43 @@
 
 					<!-- product -->
 					<div class="col-md-3 col-xs-6">
+						<!-- product -->
 						<div class="product">
-							<div class="product-img">
-								<img src="../imagenes_productos/<?php echo $producto->imagenes[0]?>" alt="">
-								<div class="product-label">
-									<span class="sale">-<?php echo $producto->descuento;?>%</span>
-								</div>
-							</div>
-							<div class="product-body">
-								<p class="product-category">Auriculares Premium</p>
-								<h3 class="product-name"><a href="#"><?php echo $producto->nombre; ?></a></h3>
-								<h4 class="product-price"><?php echo $producto->precio; ?> <del class="product-old-price"><?php echo $producto->precio_anterior; ?></del></h4>
-								<div class="product-rating">
-								</div>
-								<div class="product-btns">
-									<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Añadir a Favoritos</span></button>
-									<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">Comparar</span></button>
-									<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Visa Rapida</span></button>
-								</div>
-							</div>
-							<div class="add-to-cart">
-								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Añadir al Carrito </button>
-							</div>
-						</div>
+											<div class="product-img">
+												<img src="../imagenes_productos/<?php echo $imagenes[0]?>"  data-id="<?php echo $producto->id; ?>" alt="">
+												<div class="product-label">
+													<span class="sale">-<?php echo $producto->descuento; ?>%</span>
+													<span class="new">OFERTA</span>
+												</div>
+											</div>
+											<div class="product-body">
+												<p class="product-category">Auriculares</p>
+												<h3 class="product-name"><a href="producto?id=<?php echo  $producto->id; ?>"><?php echo $producto->nombre; ?></a></h3>
+												<h4 class="product-price">$<?php echo $producto->precio; ?> <del class="product-old-price">$<?php echo $producto->precio_anterior; ?></del></h4>
+												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+												<div class="product-btns">
+													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Añadir a Favoritos</span></button>
+													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">Comparar</span></button>
+													<button class="quick-view" data-id="<?php echo $producto->id; ?>"><i class="fa fa-eye"></i><span class="tooltipp">Vista Rapida</span></button>
+												</div>
+											</div>
+											<div class="add-to-cart">
+												<button class="add-to-cart-btn" data-id="<?php echo $producto->id; ?>"><i class="fa fa-shopping-cart"></i> Añadir al Carrito </button>
+											</div>
+										</div>
+										<!-- /product -->
 					</div>
 					<!-- /product -->
+
+
                                 <?php endforeach; ?>
-				
+
 
 				</div>
 				<!-- /row -->
@@ -413,4 +404,3 @@
 			<!-- /container -->
 		</div>
 		<!-- /Section -->
-        

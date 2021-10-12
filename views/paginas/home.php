@@ -1,26 +1,6 @@
 
 
-		<!-- NAVIGATION -->
-		<nav id="navigation">
-			<!-- container -->
-			<div class="container">
-				<!-- responsive-nav -->
-				<div id="responsive-nav">
-					<!-- NAV -->
-					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">Auriculares Premium</a></li>
-						<li><a href="#">Accessorios</a></li>
-						<li><a href="#">Laptops</a></li>
-						<li><a href="#">Celulares</a></li>
-					</ul>
-					<!-- /NAV -->
-				</div>
-				<!-- /responsive-nav -->
-			</div>
-			<!-- /container -->
-		</nav>
-		<!-- /NAVIGATION -->
+
 
 		<!-- SECTION -->
 		<div class="section">
@@ -28,36 +8,22 @@
 			<div class="container">
 				<!-- row -->
 				<div class="row">
-					<!-- shop -->
-					<div class="col-md-4 col-xs-6">
-						<div class="shop">
-							<div class="shop-img">
-								
-							<img src="../img/shop03.png" alt="">
-							</div>
-							<div class="shop-body">
-								<h3>Auriculares <br> Premium </h3>
-								<a href="#" class="cta-btn">Ver Ahora <i class="fa fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /shop -->
 
-					<!-- shop -->
-					<div class="col-md-4 col-xs-6">
-						<div class="shop">
-							<div class="shop-img">
-								
-							<img src="../img/shop01.png" alt="">
+					<?php foreach ($categorias as  $categoria):?>
+						<!-- shop -->
+							<div class="col-md-4 col-xs-6">
+								<div class="shop animar-btn" data-categoria="<?php echo $categoria['id']; ?>">
+									<div class="shop-img" data-categoria="<?php echo $categoria['id']; ?>">
+										<img src="../imagenes_categorias/<?php echo $categoria["imagen"];  ?>" alt="<?php echo $categoria['nombre']; ?>">
+								</div>
+								<div class="shop-body" data-categoria="<?php echo $categoria['id']; ?>">
+										<h3> <?php $cat = explode(" ",$categoria["nombre"]); echo $cat[0];if(isset($cat[1])){ echo "<br>"; echo $cat[1];}; ?> </h3>
+										<a href="tienda?categoria=<?php echo $categoria['id']; ?>" class="cta-btn">Ver Ahora <i class="fa fa-arrow-circle-right"></i></a>
+								</div>
+								</div>
 							</div>
-							<div class="shop-body">
-								<h3>Laptops <br> Notebook </h3>
-								<a href="#" class="cta-btn">Ver Ahora <i class="fa fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /shop -->
-				
+							<!-- /shop -->
+							<?php endforeach; ?>
 				</div>
 				<!-- /row -->
 			</div>
@@ -78,9 +44,12 @@
 							<h3 class="title">Productos de Ofertas</h3>
 							<div class="section-nav">
 								<ul class="section-tab-nav tab-nav">
-									<li><a data-toggle="tab" href="#tab1">Auriculares Premium</a></li>
-									<li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
-									<li><a data-toggle="tab" href="#tab1">Celulares</a></li>
+								<?php foreach ($categorias as  $categoria):?>
+
+							<li><a data-toggle="tab"  href="tienda?categoria=<?php echo $categoria["id"]; ?>"><?php echo $categoria["nombre"]; ?></a></li>
+					<?php endforeach; ?>
+
+
 								</ul>
 							</div>
 						</div>
@@ -97,15 +66,15 @@
 
 										<?php foreach($productos as $producto):?>
 
-											<?php 
-											
+											<?php
+
 											$imagenes = $producto->obtenerImagenes();
-								
+
 										?>
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="../imagenes_productos/<?php echo $imagenes[0]?>"  alt="">
+												<img src="../imagenes_productos/<?php echo $imagenes[0]?>"  data-id="<?php echo $producto->id; ?>" alt="">
 												<div class="product-label">
 													<span class="sale">-<?php echo $producto->descuento; ?>%</span>
 													<span class="new">OFERTA</span>
@@ -113,7 +82,7 @@
 											</div>
 											<div class="product-body">
 												<p class="product-category">Auriculares</p>
-												<h3 class="product-name"><a href="#"><?php echo $producto->nombre; ?></a></h3>
+												<h3 class="product-name"><a href="producto?id=<?php echo  $producto->id; ?>"><?php echo $producto->nombre; ?></a></h3>
 												<h4 class="product-price">$<?php echo $producto->precio; ?> <del class="product-old-price">$<?php echo $producto->precio_anterior; ?></del></h4>
 												<div class="product-rating">
 													<i class="fa fa-star"></i>
@@ -125,7 +94,7 @@
 												<div class="product-btns">
 													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Añadir a Favoritos</span></button>
 													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">Comparar</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Vista Rapida</span></button>
+													<button class="quick-view" data-id="<?php echo $producto->id; ?>"><i class="fa fa-eye"></i><span class="tooltipp">Vista Rapida</span></button>
 												</div>
 											</div>
 											<div class="add-to-cart">
@@ -134,7 +103,7 @@
 										</div>
 										<!-- /product -->
 									<?php endforeach; ?>
-								
+
 									</div>
 									<div id="slick-nav-1" class="products-slick-nav"></div>
 								</div>
@@ -161,32 +130,32 @@
 							<ul class="hot-deal-countdown">
 								<li>
 									<div>
-										<h3>02</h3>
+										<h3 id="dias">02</h3>
 										<span>Dias</span>
 									</div>
 								</li>
 								<li>
 									<div>
-										<h3>10</h3>
+										<h3 id="horas">10</h3>
 										<span>Horas</span>
 									</div>
 								</li>
 								<li>
 									<div>
-										<h3>34</h3>
+										<h3 id="minutos">34</h3>
 										<span>Minutos</span>
 									</div>
 								</li>
 								<li>
 									<div>
-										<h3>60</h3>
+										<h3 id="segundos">60</h3>
 										<span>Segundos</span>
 									</div>
 								</li>
 							</ul>
 							<h2 class="text-uppercase"> Semana de Ofertas </h2>
 							<p>Solo por esta semana un 10% OFF en tus compras</p>
-							<a class="primary-btn cta-btn" href="#">Comprar Ahora </a>
+							<a class="primary-btn cta-btn animar-btn" href="tienda?categoria=1">Comprar Ahora </a>
 						</div>
 					</div>
 				</div>
@@ -207,7 +176,7 @@
 					<div class="col-md-12">
 						<div class="section-title">
 							<h3 class="title">Lo más Vendido</h3>
-							
+
 						</div>
 					</div>
 					<!-- /section title -->
@@ -221,15 +190,15 @@
 									<div class="products-slick" data-nav="#slick-nav-2">
 										<?php foreach($mas_vendidos as $mas_vendido):?>
 
-											<?php 
-											
+											<?php
+
 											$imagenes = $mas_vendido->obtenerImagenes();
-											
+
 										?>
 												<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="../imagenes_productos/<?php echo $imagenes[0]?>" alt="">
+												<img src="../imagenes_productos/<?php echo $imagenes[0]?>" data-id="<?php echo $mas_vendido->id; ?>"  alt="">
 												<div class="product-label">
 													<span class="sale">-<?php echo $mas_vendido->descuento; ?>%</span>
 													<span class="new">OFERTA </span>
@@ -237,7 +206,7 @@
 											</div>
 											<div class="product-body">
 												<p class="product-category">Auriculares</p>
-												<h3 class="product-name"><a href="#"><?php echo $mas_vendido->nombre;?></a></h3>
+												<h3 class="product-name"><a href="producto?id=<?php echo  $mas_vendido->id; ?>"><?php echo $mas_vendido->nombre;?></a></h3>
 												<h4 class="product-price">$<?php echo $mas_vendido->precio; ?> <del class="product-old-price">$<?php echo $mas_vendido->precio_anterior; ?></del></h4>
 												<div class="product-rating">
 													<i class="fa fa-star"></i>
@@ -249,7 +218,7 @@
 												<div class="product-btns">
 													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Añadir a Favoritos</span></button>
 													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">Comparar</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Vista Rapida</span></button>
+													<button class="quick-view" data-id="<?php echo $producto->id; ?>"><i class="fa fa-eye"></i><span class="tooltipp">Vista Rapida</span></button>
 												</div>
 											</div>
 											<div class="add-to-cart">
@@ -289,14 +258,14 @@
 
 						<div class="products-widget-slick" data-nav="#slick-nav-3">
 							<div>
-											
+
 							<?php foreach($productos_calidad as $producto_calidad){
-								
+
 								$prod_calidad = $producto_calidad[0];
-											
+
 											$imagenes = $prod_calidad->obtenerImagenes();
-											
-									
+
+
 
 							?>
 							<!-- product widget -->
@@ -305,19 +274,23 @@
 										<img src="../imagenes_productos/<?php echo $imagenes[0]?>" alt="">
 									</div>
 									<div class="product-body">
-										<p class="product-category">Auriculares</p>
-										<h3 class="product-name"><a href="#"><?php echo $prod_calidad->nombre; ?></a></h3>
+										<p class="product-category"><?php foreach ($categorias as $cat){
+													if($cat["id"]==$prod_calidad->id_categoria){
+														echo $cat["nombre"];
+													} } ?></p>
+
+										<h3 class="product-name"><a href="producto?id=<?php echo $prod_calidad->id; ?>"><?php echo $prod_calidad->nombre; ?></a></h3>
 										<h4 class="product-price">$<?php echo $prod_calidad->precio; ?><del class="product-old-price">$<?php echo $prod_calidad->precio_anterior; ?></del></h4>
 									</div>
 								</div>
 								<!-- /product widget -->
 
 							<?php	} ?>
-							
-							
+
+
 						</div>
 					</div>
-							
+
 				</div>
 				<!-- /row -->
 			</div>
@@ -325,4 +298,3 @@
 		</div>
 		<!-- /SECTION -->
 
-	
